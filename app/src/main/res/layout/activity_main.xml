@@ -11,7 +11,7 @@
         android:layout_width="@dimen/gameinfo_broadcast_switch_width"
         android:layout_height="@dimen/gameinfo_broadcast_switch_height"/>
 
-    <com.example.park.customswitch.SslSwitch
+    <com.example.park.customswitch.AnimationSwitch
         android:id="@+id/sslswitch"
         android:layout_width="62dp"
         android:layout_height="28dp"

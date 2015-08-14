@@ -13,7 +13,7 @@ import android.widget.ImageView;
 /**
  * Created by park on 2015-06-03.
  */
-public class SslSwitch extends FrameLayout {
+public class AnimationSwitch extends FrameLayout {
     private static int SPEED = 5;
     private boolean isDrag = false;
     private ImageView mSwitchIv;
@@ -31,21 +31,21 @@ public class SslSwitch extends FrameLayout {
         }
     }
 
-    public SslSwitch(Context context) {
+    public AnimationSwitch(Context context) {
         super(context);
         if(!isInEditMode()) {
             init(context);
         }
     }
 
-    public SslSwitch(Context context, AttributeSet attrs) {
+    public AnimationSwitch(Context context, AttributeSet attrs) {
         super(context, attrs);
         if(!isInEditMode()) {
             init(context);
         }
     }
 
-    public SslSwitch(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AnimationSwitch(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         if(!isInEditMode()) {
             init(context);

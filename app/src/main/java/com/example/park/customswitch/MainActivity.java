@@ -2,23 +2,21 @@ package com.example.park.customswitch;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
-    private SslSwitch mSslSwitch;
+    private AnimationSwitch mSslSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSslSwitch = (SslSwitch) findViewById(R.id.sslswitch);
-        mSslSwitch.setOnSwitchChangeListener(new SslSwitch.OnSwitchChangeListener() {
+        mSslSwitch = (AnimationSwitch) findViewById(R.id.sslswitch);
+        mSslSwitch.setOnSwitchChangeListener(new AnimationSwitch.OnSwitchChangeListener() {
             @Override
             public void onSwitchChange(boolean isSwitch) {
                 Toast.makeText(MainActivity.this, String.valueOf(isSwitch), Toast.LENGTH_SHORT).show();
