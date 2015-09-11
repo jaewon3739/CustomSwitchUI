@@ -1,10 +1,12 @@
 package com.example.park.customswitch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
@@ -14,7 +16,7 @@ import android.widget.ImageView;
  * Created by park on 2015-06-03.
  */
 public class AnimationSwitch extends FrameLayout {
-    private static int SPEED = 5;
+    private static int SPEED = 10;
     private boolean isDrag = false;
     private ImageView mSwitchIv;
     private FrameLayout.LayoutParams mSwitchParam;
@@ -79,7 +81,10 @@ public class AnimationSwitch extends FrameLayout {
      * @param resId
      */
     public void setSwitchRes(int resId) {
-        mSwitchIv.setBackgroundResource(resId);
+        if (mSwitchIv.getTag() != null && Integer.valueOf(mSwitchIv.getTag().toString()) != resId) {
+            mSwitchIv.setTag(resId);
+            mSwitchIv.setBackgroundResource(resId);
+        }
     }
 
     /**
@@ -137,6 +142,7 @@ public class AnimationSwitch extends FrameLayout {
                 mTouchTime = System.currentTimeMillis();
                 isDrag = false;
                 break;
+            case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (isDrag) {
                     if(getSwitchX() >= (getWidth() - mSwitchIv.getWidth()) / 2) {
@@ -218,6 +224,7 @@ public class AnimationSwitch extends FrameLayout {
     class Switch extends ImageView {
         public Switch(Context context) {
             super(context);
+            setTag(0);
         }
     }
 
