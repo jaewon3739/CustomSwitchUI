@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -24,7 +25,7 @@ public class AnimationSwitch extends FrameLayout {
 
     private OnSwitchChangeListener mOnSwitchChangeListener;
 
-    private enum SwitchStatus {
+    public enum SwitchStatus {
         ON(0), OFF(1);
         private int value;
 
@@ -66,6 +67,34 @@ public class AnimationSwitch extends FrameLayout {
         setSwitchRes(R.drawable.switch_off);
 
         addView(mSwitchIv);
+    }
+
+    /*
+     * 처음 Switch 위치
+     */
+    public void initSsl(final SwitchStatus status) {
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+                switch (status) {
+                    case OFF:
+                        setSwitchX(0);
+                        break;
+                    case ON:
+                        setSwitchX(getWidth() - mSwitchIv.getWidth());
+                        break;
+                    default:
+                        break;
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                } else {
+                    getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+            }
+        });
     }
 
     /**
